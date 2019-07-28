@@ -3,7 +3,9 @@
 import sys
 from socket import *
 from termcolor import colored
-import optparse
+
+# Depricated import update for argparse
+import optparse   
 from threading import *
 
 def connScan(tgtHost, tgtPort):
