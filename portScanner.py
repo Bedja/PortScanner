@@ -3,9 +3,7 @@
 import sys
 from socket import *
 from termcolor import colored
-
-# Depricated import update for argparse
-import optparse   
+import argparse
 from threading import *
 
 def connScan(tgtHost, tgtPort):
@@ -35,10 +33,10 @@ def portScan(tgtHost, tgtPorts):
         t.start()
 
 def main():
-    parser = optparse.OptionParser('Usage of program: ' + '-H <target host> -p <target port>,<target port>')
-    parser.add_option('-H', dest='tgtHost', type='string', help='specify target host')
-    parser.add_option('-p', dest='tgtPort', type='string', help='specity target ports seperated by comma')
-    (options, args) = parser.parse_args()
+    parser = argparse.ArgumentParser(description='Usage of program: -H <target host> -P <target port>')
+    parser.add_argument('-H', dest='tgtHost', type=str, help='sepcify your target Host')
+    parser.add_argument('-P', dest='tgtPort', type=str, help='specify target ports seperated by comma')
+    options = parser.parse_args()
     tgtHost = options.tgtHost
     tgtPorts = str(options.tgtPort).split(',')
     if (tgtHost == None) | (tgtPorts[0] == None):
